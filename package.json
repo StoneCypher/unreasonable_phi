@@ -1,6 +1,6 @@
 {
   "name": "unreasonable_phi",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "An implementation of The Unreasonable Effectiveness of Quasirandom Generators for Typescript",
   "main": "index.js",
   "dependencies": {},
@@ -12,10 +12,11 @@
     "typescript": "^4.0.3"
   },
   "scripts": {
-    "clean": "rimraf -f dist",
+    "clean": "rimraf -f dist && rimraf -f docs && mkdir docs",
+    "page": "cp src/html/* docs/ && cp dist/es6/* docs/",
     "typescript": "tsc --build tsconfig.json",
     "test": "jest",
-    "build": "npm run clean && npm run typescript && npm run test"
+    "build": "npm run clean && npm run typescript && npm run page && npm run test"
   },
   "repository": {
     "type": "git",

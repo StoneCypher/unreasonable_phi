@@ -17,18 +17,20 @@ function within(val1: number, val2: number, delta: number): boolean {
 
 
 
-function gen(count: number=50, dimensions: number=2, seed: number=0.5): number[] {
+function gen(count: number=50, dimensions: number=2, seed: number=0.5): number[][] {
 
-  const g = d_phi(dimensions),
-        a = new Array(dimensions).fill(0);
+  const g     = d_phi(dimensions),
+        alpha = new Array(dimensions);
 
-  a.forEach( (_,i) => a[i] = Math.pow(1/g, i+i) );
+  for (let i=0; i<dimensions; ++i) { alpha[i] = Math.pow(1/g, i+1); }
 
-  console.log(a);
-
-  return seq(count).map(nth => nth+seed); // todo
+  return seq(count).map(nth =>
+    alpha.map(a => ((a * (nth+1)) + seed) % 1)
+  );
 
 }
+
+console.log(gen(6));
 
 
 
