@@ -9,6 +9,14 @@ const d_phi = (dimensions: number=1, accuracy: number=30) =>
 
 
 
+function within(val1: number, val2: number, delta: number): boolean {
+  return Math.abs(val1 - val2) <= delta;
+}
+
+
+
+
+
 function gen(count: number=50, dimensions: number=2, seed: number=0.5): number[] {
 
   const g = d_phi(dimensions),
@@ -26,4 +34,4 @@ function gen(count: number=50, dimensions: number=2, seed: number=0.5): number[]
 
 
 
-export { d_phi, gen };
+export { d_phi, gen, within };
