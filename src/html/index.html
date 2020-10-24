@@ -2,10 +2,118 @@
 <html>
 
   <head>
-    <script type="text/javascript" src="./index.js"></script>
+
+    <link rel="icon" href="./favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet" />
+
+    <style type="text/css">
+
+      html, body, table { margin: 0; padding: 0; border: 0; background-color: #e7f6ff; }
+      body              { padding: 2em 3em; }
+      body, p, th, td   { font-family: 'Titillium Web', sans-serif; }
+      label             { display: block; }
+      label span        { display: inline-block; text-align: right; width: 4em; }
+      canvas            { margin: 1em 0 0 0; padding: 0; border: 1px solid black; }
+
+    </style>
+
+    <script type="module" type="text/javascript">
+
+      import { gen } from './unreasonable_phi.js';
+
+      let tgt   = undefined,
+          ctx   = undefined,
+          count = undefined,
+          range = undefined,
+          size  = undefined;
+
+      // lol what https://stackoverflow.com/a/54024653/763127
+      function hsv2rgb(h,s,v) {
+        const f = (n,k=(n+h/60)%6) =>
+                v - v*s*Math.max( Math.min(k,4-k,1), 0);
+        const ans = `rgb(${f(5) * 255},${f(3) * 255},${f(1) * 255})`;
+        console.log(ans);
+        return ans;
+      }
+
+      function range_to_rgb(at, max) {
+        // just do red to blue, not 360deg, so people can see where the ends are.  no purple!
+        const start = 0,   // red
+              stop  = 240; // blue
+        return hsv2rgb((at/max)*(stop-start), 1, 1);
+      }
+
+      function circle(ctx, x,y, size_i, i, count_i) {
+        ctx.fillStyle = range_to_rgb(i, count_i);
+        ctx.beginPath();
+        ctx.ellipse(x,y, size_i,size_i, 0, 0,2*Math.PI);
+        ctx.fill();
+      }
+
+      function resize() {
+
+        let range_s = range.value,
+            range_i = parseInt(range_s, 10);
+
+        let size_i = parseInt(size.value, 10);
+
+        let count_i = parseInt(count.value, 10);
+
+        tgt.height = range_s;
+        tgt.width  = range_s;
+
+        tgt.style.height = `${range_s}px`;
+        tgt.style.width  = `${range_s}px`;
+
+        ctx           = tgt.getContext('2d');
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0,0, range_i,range_i);
+
+        const dots = gen( count_i, 2 );
+
+        console.log(dots);
+
+        dots.map( ([x,y], i) => circle(ctx, x*range_i,y*range_i, size_i, i, count_i) );
+
+      }
+
+      function startup() {
+
+        tgt   = document.getElementById('tgt');
+        ctx   = tgt.getContext('2d');
+        count = document.getElementById('count');
+        range = document.getElementById('range');
+        size  = document.getElementById('size');
+
+        resize();
+
+        range.onchange = resize;
+        count.onchange = resize;
+        size.onchange  = resize;
+
+        range.onkeyup  = resize;
+        count.onkeyup  = resize;
+        size.onkeyup   = resize;
+
+      }
+
+      window.onload = startup;
+
+    </script>
+
   </head>
 
+
   <body>
+
+    <table><tbody>
+      <tr><th>Count</th><td><input type="number" name="count" id="count" min="1" value="750"/></td></tr>
+      <tr><th>Range</th><td><input type="number" name="range" id="range" min="1" value="800"/></td></tr>
+      <tr><th>Size</th><td><input  type="number" name="size"  id="size"  min="1" value="3"/></td></tr>
+    </tbody></table>
+
+    <canvas id="tgt" width="100" height="100"></canvas>
+
   </body>
 
 </html>

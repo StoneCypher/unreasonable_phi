@@ -2,6 +2,10 @@
 const seq = (n: number): number[] =>
   (new Array(n)).fill(false).map( (_: unknown, i: number) => i);
 
+
+
+
+
 const d_phi = (dimensions: number=1, accuracy: number=30) =>
   seq(accuracy).reduce( (acc, _) => Math.pow(1+acc, 1/(dimensions+1)) , 2);
 
@@ -29,8 +33,6 @@ function gen(count: number=50, dimensions: number=2, seed: number=0.5): number[]
   );
 
 }
-
-console.log(gen(6));
 
 
 
