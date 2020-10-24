@@ -1,0 +1,23 @@
+{
+  "name": "unreasonable_phi",
+  "version": "0.1.0",
+  "description": "An implementation of The Unreasonable Effectiveness of Quasirandom Generators for Typescript",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StoneCypher/unreasonable_phi.git"
+  },
+  "author": "John Haugeland <stonecypher@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StoneCypher/unreasonable_phi/issues"
+  },
+  "homepage": "https://github.com/StoneCypher/unreasonable_phi#readme"
+}
