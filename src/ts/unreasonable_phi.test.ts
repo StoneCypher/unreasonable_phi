@@ -1,5 +1,13 @@
 
-import { d_phi, within } from './unreasonable_phi';
+import { d_phi } from './unreasonable_phi';
+
+
+
+
+
+function within(val1: number, val2: number, delta: number): boolean {
+  return Math.abs(val1 - val2) <= delta;
+}
 
 describe('system', () => {
   test('test runner works', () => expect(1+2).toBe(3) );
