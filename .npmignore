@@ -107,3 +107,6 @@ jest.config.js
 rollup.config.js
 src/
 tsconfig.json
+
+dist/cjs/unreasonable_phi.js
+dist/es6/unreasonable_phi.js

@@ -101,3 +101,6 @@ typings/
 
 # TernJS port file
 .tern-port
+
+dist/cjs/unreasonable_phi.js
+dist/es6/unreasonable_phi.js
