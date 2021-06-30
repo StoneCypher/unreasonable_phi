@@ -1,6 +1,6 @@
 {
   "name": "unreasonable_phi",
-  "version": "0.7.3",
+  "version": "0.9.0",
   "description": "An implementation of The Unreasonable Effectiveness of Quasirandom Generators for Typescript",
   "main": "./dist/cjs/unreasonable_phi.js",
   "module": "./dist/es6/unreasonable_phi.js",
